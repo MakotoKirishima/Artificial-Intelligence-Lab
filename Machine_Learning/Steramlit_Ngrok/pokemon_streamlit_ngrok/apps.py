@@ -5,13 +5,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
+from pathlib import Path
 
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("Pokemon_Complete_Gen1_to_Gen9.csv")
+    current_dir = Path(__file__).parent
+    csv_path = current_dir / "Pokemon_Complete_Gen1_to_Gen9.csv"
+    df = pd.read_csv(csv_path)
     return df
-
 
 @st.cache_resource
 def train_model(df):
